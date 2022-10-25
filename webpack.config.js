@@ -53,7 +53,7 @@ module.exports = {
             }, {
                 test: /\.less$/,
                 use: [{
-                    loader: 'style-loader' // creates style nodes from JS strings
+                    loader:  MiniCssExtractPlugin.loader // creates style nodes from JS strings
                 }, {
                     loader: 'css-loader' // translates CSS into CommonJS
                 }, {
@@ -62,7 +62,7 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 use: [{
-                    loader: 'style-loader' // creates style nodes from JS strings
+                    loader:  MiniCssExtractPlugin.loader // creates style nodes from JS strings
                 }, {
                     loader: 'css-loader' // translates CSS into CommonJS
                 }, {
