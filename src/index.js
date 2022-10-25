@@ -6,9 +6,9 @@ app.innerHTML=h3+Str.link; */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-// import './css/public.css'
+import './css/public.css'
 // import './less/public.less'
-import './sass/public.scss'
+// import './sass/public.scss'
 
 
 ReactDOM.render(
