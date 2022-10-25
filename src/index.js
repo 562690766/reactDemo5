@@ -7,7 +7,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 // import './css/public.css'
-import './less/public.less'
+// import './less/public.less'
+import './sass/public.scss'
 
 
 ReactDOM.render(
