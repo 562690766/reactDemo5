@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development npx webpack",
-    "build": "cross-env NODE_ENV=produciton npx webpack"
+    "dev": "npx webpack-dev-server --open",
+    "build": "npx webpack"
   },
   "keywords": [],
   "author": "",
