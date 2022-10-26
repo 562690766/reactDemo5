@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin=require('mini-css-extract-plugin');
-
+const devMode=process.env.NODE_ENV!=='production';
+// 如果等于development就是true，否则就是false。
+const dev=process.env.NODE_ENV==="development";
 module.exports = {
     entry: {
         index: "./src/index.js",
@@ -30,9 +32,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: '[name]-[hash].css',
-            chunkFilename: '[id].css',
-            }),
+            filename:devMode?'[name].[hash].css':'[name].css',
+            chunkFilename: devMode?'[id].[hash].css':'[id].css',
+        }),
     ],
     module: {
         rules: [
@@ -49,11 +51,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                // 是开发者模式吗？是就用style-loader，不是就不用--并打包成独立文件
+                use: [dev?'style-loader':MiniCssExtractPlugin.loader, 'css-loader'],
             }, {
                 test: /\.less$/,
                 use: [{
-                    loader:  MiniCssExtractPlugin.loader // creates style nodes from JS strings
+                    loader:  dev?'style-loader':MiniCssExtractPlugin.loader // creates style nodes from JS strings
                 }, {
                     loader: 'css-loader' // translates CSS into CommonJS
                 }, {
@@ -62,7 +65,7 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 use: [{
-                    loader:  MiniCssExtractPlugin.loader // creates style nodes from JS strings
+                    loader:  dev?'style-loader':MiniCssExtractPlugin.loader // creates style nodes from JS strings
                 }, {
                     loader: 'css-loader' // translates CSS into CommonJS
                 }, {

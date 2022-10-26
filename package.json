@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx webpack"
+    "dev": "cross-env NODE_ENV=development npx webpack",
+    "build": "cross-env NODE_ENV=produciton npx webpack"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
     "css-loader": "^4.3.0",
     "html-webpack-plugin": "^4.5.2",
     "less": "^4.1.3",
@@ -24,7 +26,8 @@
     "sass-loader": "^10.3.1",
     "style-loader": "^2.0.0",
     "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.5"
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
