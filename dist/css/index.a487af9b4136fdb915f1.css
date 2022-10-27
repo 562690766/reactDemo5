@@ -1,6 +1,7 @@
 body{
     font:20px/2em 微软雅黑;
     color:firebrick;
+    background:url(./../img/2.jpg);
 }
 div#app{
     background: #09f;
@@ -9,6 +10,6 @@ div#app{
 }
 div#app div{
     background-color: green;
-    width: 200px;
-    height: 200px;
+    width: 360px;
+    height: 360px;
 }

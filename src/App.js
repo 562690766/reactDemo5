@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+import Img1 from './img/1.gif'
 export default class App extends Component{
     render(){
         return (
@@ -16,6 +17,7 @@ export default class App extends Component{
                     })
                 }
                 </ul>
+                <img src={Img1}/>
             </div>
         )
     }

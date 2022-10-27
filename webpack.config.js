@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
-const {CleanWebpackPlugin}=require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // 如果等于development就是true，否则就是false。
 const dev = process.env.NODE_ENV === "development";
 module.exports = {
@@ -73,6 +73,21 @@ module.exports = {
                 }, {
                     loader: 'sass-loader' // compiles sass to CSS
                 }]
+            }, {
+                test: /\.(png|jpe?g|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            publicPath: './../img',  //该属性指明我们最终引用的文件路径（打包生成的index.html文件里面引用资源的前缀）
+                            outputPath: 'img/'  //图片复制到的文件夹
+                        },
+                    },
+                    {
+                        loader:'image-webpack-loader',
+                    }
+                ],
             }
         ]
     },
