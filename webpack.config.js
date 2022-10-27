@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+const {CleanWebpackPlugin}=require('clean-webpack-plugin');
 // 如果等于development就是true，否则就是false。
 const dev = process.env.NODE_ENV === "development";
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "[name].[contenthash].main.js"
+        filename: "js/[name].[contenthash].main.js"
     },
     mode: "development",
     // devtool: "source-map",
@@ -32,9 +33,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            filename: devMode ? '[name].[hash].css' : '[name].css',
+            filename: devMode ? 'css/[name].[hash].css' : '[name].css',
             chunkFilename: devMode ? '[id].[hash].css' : '[id].css',
         }),
+        new CleanWebpackPlugin()
     ],
     module: {
         rules: [
@@ -80,7 +82,7 @@ module.exports = {
         port: 9000,
         proxy: {//代理服务器
             "/data": { //地址
-                "target": "http://www.bjlink32.com/data.php", //接口地址,跨域访问
+                "target": "http://wz321.cp1j07.cnaaa3.com", //接口地址,跨域访问
                 // secure: false,// 如果是https接口，需要配置这个参数
                 "changeOrigin": true,//开启跨域
                 "pathRewrite": { "^/data": "" }//如果接口本身没有/data需要通过pathRewrite来重写了地址

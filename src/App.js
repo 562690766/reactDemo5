@@ -1,10 +1,10 @@
 import React,{Component} from 'react'
-
+import axios from 'axios'
 export default class App extends Component{
     render(){
         return (
             <div>
-                <h3>app组件++666</h3>
+                <h3>app组件++666999</h3>
                 <ul>
                 {
                     [
@@ -18,6 +18,13 @@ export default class App extends Component{
                 </ul>
             </div>
         )
+    }
+    componentDidMount(){
+        // 取数据 
+        axios.get("/data")
+        .then(res=>{
+            console.log("res",res);
+        });
     }
 }
 

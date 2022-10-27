@@ -1,0 +1,14 @@
+body{
+    font:20px/2em 微软雅黑;
+    color:firebrick;
+}
+div#app{
+    background: #09f;
+    width: 600px;
+    height: 600px;
+}
+div#app div{
+    background-color: green;
+    width: 200px;
+    height: 200px;
+}
