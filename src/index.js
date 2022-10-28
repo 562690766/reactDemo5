@@ -4,6 +4,6 @@ import App from './App'
 import './css/public.css'
 
 ReactDOM.render(
-    <App/>,
+    <App />,
     document.getElementById("app")
 )
