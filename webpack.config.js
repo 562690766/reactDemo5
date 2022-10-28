@@ -41,7 +41,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
@@ -54,15 +54,26 @@ module.exports = {
             {
                 test: /\.css$/,
                 // 是开发者模式吗？是就用style-loader，不是就不用--并打包成独立文件
-                use: [dev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [
+                    {
+                        loader:MiniCssExtractPlugin.loader
+                    },{
+                        loader:'css-loader',
+                        options:{
+                            modules:true,
+                        }
+                    }]
             }, {
                 test: /\.less$/,
                 use: [{
                     loader: dev ? 'style-loader' : MiniCssExtractPlugin.loader // creates style nodes from JS strings
                 }, {
-                    loader: 'css-loader' // translates CSS into CommonJS
+                    loader: 'css-loader', // translates CSS into CommonJS
+                    options: {
+                        modules: true,
+                    },
                 }, {
-                    loader: 'less-loader' // compiles Less to CSS
+                    loader: 'less-loader'// compiles Less to CSS
                 }]
             }, {
                 test: /\.scss$/,
@@ -73,22 +84,46 @@ module.exports = {
                 }, {
                     loader: 'sass-loader' // compiles sass to CSS
                 }]
-            }, {
+            },
+            //  {
+            //      test: /\.(png|jpe?g|gif)$/,
+            //      use: [
+            //          {
+            //              loader: 'file-loader',
+            //              options: {
+            //                  name: '[name].[ext]',
+            //                  publicPath: './../img',  //该属性指明我们最终引用的文件路径（打包生成的index.html文件里面引用资源的前缀）
+            //                  outputPath: 'img/'  //图片复制到的文件夹
+            //              },
+            //          },
+            //          {
+            //              loader:'image-webpack-loader',
+            //          }
+            //      ],
+            //  },
+            {
                 test: /\.(png|jpe?g|gif)$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
-                            name: '[name].[ext]',
-                            publicPath: './../img',  //该属性指明我们最终引用的文件路径（打包生成的index.html文件里面引用资源的前缀）
-                            outputPath: 'img/'  //图片复制到的文件夹
+                            limit: 8192,
+                            publicPath: './../img',
+                            outputPath: 'img/'
                         },
                     },
-                    {
-                        loader:'image-webpack-loader',
-                    }
                 ],
-            }
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    publicPath: './../fonts',
+                    outputPath: 'fonts/'
+                },
+            },
+
         ]
     },
     devServer: {
@@ -103,5 +138,9 @@ module.exports = {
                 "pathRewrite": { "^/data": "" }//如果接口本身没有/data需要通过pathRewrite来重写了地址
             }
         }
-    }
+    },
+    resolve:{
+        extensions:['.jsx','.less','.js','.css']
+      },
+  
 }
