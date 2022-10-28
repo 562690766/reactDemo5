@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Img1 from './img/1.gif'
-import Style from './css/style'
+import Style from './css/style.css'
 
 export default class App extends Component {
     render() {
@@ -40,14 +40,3 @@ export default class App extends Component {
             });
     }
 }
-
-// 导出也可以写成export default App
-// jsx语法，就是在js中写xhtml代码
-/* 小括号里的内容babel-loader参考preset-react写成
-{虚拟DOM
-    tagName:"div",
-    children:{
-        tagName:"h3",
-        children:"App组件"
-    }
-} */

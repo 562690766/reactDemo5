@@ -1,22 +1,12 @@
 const path = require('path');
 const base=require("./webpack.config.base")
-const merge=require('webpack-merge');
-
+// const merge=require('webpack-merge');
+const { merge } = require('webpack-merge');
 module.exports = merge(base,{
     mode: "development",
-    devtool: "source-map",
+    devtool: "flase",
     module: {
         rules: [
-            {
-                test: /\.js?$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                loader: 'babel-loader',
-                options: {
-                presets: ['@babel/preset-env','@babel/preset-react']
-                }
-                }
-                },
             {
                 test: /\.css$/,
                 // 是开发者模式吗？是就用style-loader，不是就不用--并打包成独立文件
@@ -35,9 +25,6 @@ module.exports = merge(base,{
                     loader: "style-loader"
                 }, {
                     loader: 'css-loader', // translates CSS into CommonJS
-                    options: {
-                        modules: true,
-                    },
                 }, {
                     loader: 'less-loader'// compiles Less to CSS
                 }]
@@ -57,6 +44,10 @@ module.exports = merge(base,{
         contentBase: path.join(__dirname, 'dist'),//contentBase网站根目录
         compress: true,//会 gzip(压缩) 和 serve(服务) 所有来自项目根路径下 dist/ 目录的文件
         port: 9000,
+        overlay: {
+            warnings: true,
+            errors: true
+            },      
         proxy: {//代理服务器
             "/data": { //地址
                 "target": "http://wz321.cp1j07.cnaaa3.com", //接口地址,跨域访问

@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const WebpackBar = require('webpackbar');
 module.exports = {
     entry: {
         index: "./src/index.js",
@@ -25,19 +25,18 @@ module.exports = {
             template: "./public/one.html",
             chunks: ["one"] //chunks指定需要引入的入口模块的键名 one:"./src/one.js"
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new WebpackBar()
     ],
     module: {
         rules: [
-            // {
-            //     test: /\.jsx?$/,
-            //     exclude: /(node_modules|bower_components)/,
-            //     use: {
-            //         loader: 'babel-loader',
-            //     }
-
-            // },
-           
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
             {
                 test: /\.(png|jpe?g|gif)$/,
                 use: [
@@ -45,7 +44,7 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            publicPath: './../img',
+                            // publicPath: './../img',
                             outputPath: 'img/'
                         },
                     },
@@ -56,7 +55,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
-                    publicPath: './../fonts',
+                    // publicPath: './../fonts',
                     outputPath: 'fonts/'
                 },
             },
