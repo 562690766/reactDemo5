@@ -50,7 +50,7 @@ module.exports = merge(base,{
             },      
         proxy: {//代理服务器
             "/data": { //地址
-                "target": "http://wz321.cp1j07.cnaaa3.com", //接口地址,跨域访问
+                "target": "http://wz321.cp1j07.cnaaa3.com/data.php", //接口地址,跨域访问
                 // secure: false,// 如果是https接口，需要配置这个参数
                 "changeOrigin": true,//开启跨域
                 "pathRewrite": { "^/data": "" }//如果接口本身没有/data需要通过pathRewrite来重写了地址
