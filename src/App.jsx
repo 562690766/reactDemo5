@@ -1,12 +1,15 @@
 import React,{Component} from 'react'
-import Hello from './hello'
-
+import Reg from './components/Reg'
+import Login from './components/Login'
 export default class App extends Component{
     render(){
         return (
             <div>
-                App
-                <Hello name="susan" sex="女" age="26" />
+                首页
+                <Reg></Reg>
+                <br/>
+                <hr/>
+                <Login></Login>
             </div>
         )
     }

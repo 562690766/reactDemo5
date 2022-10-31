@@ -21,15 +21,17 @@ module.exports =merge(base,{
                     {
                         loader:MiniCssExtractPlugin.loader,
                         options:{
-                            // modules:true,
+                            modules:true,
                             publicPath:'../'
                         }
-                    },{
+                    },
+                    /* {
                         loader:'css-loader',
                         options:{
                             modules:true,
                         }
-                    }]
+                    } */
+                ]
             }, {
                 test: /\.less$/,
                 use: [{
