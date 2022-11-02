@@ -1,30 +1,29 @@
+import { FileManager } from 'less';
 import React,{Component} from 'react'
 import Child from './Child'
 export default class App extends Component{
-/*     constructor(){
-        console.log("component");
+     constructor(){
         super();
+        this.state={
+            age:19,
+            num:0,
+            flag:true
+        }
     }
-    componentWillMount(){
-        console.log("componentWillMount 1");
-        this.sid=0;
+    handdleClick=()=>{
+        let {flag}=this.state;
+        this.setState({flag:!flag})
     }
     render(){
-        console.log("render2");
+        let {age,num,flag}=this.state;
         return (
             <div>
                 <h3>App</h3>
-            </div>
-        )
-    }
-    componentDidMount(){
-        console.log("componentDidMount 3")
-    } */
-    render(){
-        return(
-            <div>
-                <h3>App组件</h3>
-                <Child/>
+                <button onClick={()=>{
+                    this.setState({age:22,num:100})
+                }}>改变this.state.age</button>
+                {flag?<Child name="jack" age={age} num={num}></Child>:<div>哈哈哈</div>}
+                <button onClick={this.handdleClick}>change flag</button>
             </div>
         )
     }
