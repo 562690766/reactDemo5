@@ -6,6 +6,6 @@ import App from './App'
 
 ReactDOM.render(
     <App/>,
-    组件渲染全过程
+    // 组件渲染全过程
     document.getElementById("app")
 )
