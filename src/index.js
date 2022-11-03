@@ -5,8 +5,6 @@ import App from './App'
 // import Child from './Child'
 
 ReactDOM.render(
-    // new App(),
     <App/>,
-    // <Child />,
     document.getElementById("app")
 )
