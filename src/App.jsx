@@ -1,24 +1,25 @@
 import React,{Component} from 'react';
+import Child from './Child'
 export default class App extends Component{
-    constructor(props){
-        super(props);
-     this.state={
-        text:""
-     }
+   constructor(){
+    super();
+    this.state={
+        userName:"tom",
+        age:{}
     }
-   changeText=(event)=>{
-        console.log("键抬起就触发");
-        this.setState({
-            text:event.target.value
-        })
+   }
+   handdleClick=()=>{
+    this.setState({
+        userName:"赵四"
+    })
    }
    render(){
-    console.log("render");
-    let {text}=this.state;
-    return(
+    ;let {userName}=this.state;
+    return( 
         <div>
             <h3>App组件</h3>
-            <input type="text" onKeyUp={this.changeText}/>
+            <Child name={userName} age={26}></Child>
+            <button onClick={this.handdleClick}>点击发生改变</button>
         </div>
     )
    }
