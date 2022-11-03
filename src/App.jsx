@@ -1,28 +1,25 @@
 import React,{Component} from 'react';
 export default class App extends Component{
-    constructor(){
-        super();
-        this.state={
-            name:"tom"//MVC-M model数据模型层
-         }
-        }
-       handdleClick=()=>{//MVC-C 控制层
+    constructor(props){
+        super(props);
+     this.state={
+        text:""
+     }
+    }
+   changeText=(event)=>{
+        console.log("键抬起就触发");
         this.setState({
-            name:"susan"
+            text:event.target.value
         })
-       }
-       render(){
-        console.log("render");
-        let {name}=this.state;
-        return(
-            <div>
-                <h3>App组件</h3>
-                <p>{name}</p>MVC-V  View视图层
-                <button onClick={this.handdleClick}>点击后改变name</button>
-            </div>
-        )
-       }
-       componentDidMount(){
-        console.log("componentDidMount");
-       }
+   }
+   render(){
+    console.log("render");
+    let {text}=this.state;
+    return(
+        <div>
+            <h3>App组件</h3>
+            <input type="text" onKeyUp={this.changeText}/>
+        </div>
+    )
+   }
 }
