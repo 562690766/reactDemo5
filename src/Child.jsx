@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import './style.css'
-var classNames=require('classnames');
+// import './src/style.css'
+// var classNames=require('classNames');
 export default class Child extends Component{
     constructor(){
         super();

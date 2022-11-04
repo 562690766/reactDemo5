@@ -64,8 +64,8 @@ module.exports = {
     },
     resolve:{
         extensions:['.jsx','.less','.js','.css'],
-        aliad:[
-            "@":path.join(__dirname,"./src")
-        ],
+        alias:{
+            "@": path.join(__dirname,"./src")
+        }
     },
 }
