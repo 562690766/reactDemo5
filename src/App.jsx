@@ -9,7 +9,7 @@ export default class App extends Component{
    render(){
 
     return( 
-        <section className="todoapp"> 
+   /*      <section className="todoapp"> 
             <header className="header">
                 <h1>Todos</h1>
                 <input type="text" className="new-todo" placeholder="What need to be done?"/>
@@ -24,9 +24,26 @@ export default class App extends Component{
                 </ul>
             </section>
             <Footer/>
-        </section>
+        </section> */
 
-           /*     <Child/>?/*  */
+        
+        <section className='todoapp'>
+            <Child></Child>
+            <header className='header'>
+                <h1>Todos</h1>
+                <input type="text" className='new-todo' placeholder="What need to be done?"/>
+            </header>
+            <section className="main">
+                <input type="checkbox" className='toggle-all' id="toggle-all"/>
+                <label htmlFor="toggle-all"></label>
+                <ul className='todo-list'>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                </ul>
+            </section>
+            <Footer/>
+        </section>
     )
    }
 }

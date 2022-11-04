@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-// import './src/style.css'
-// var classNames=require('classNames');
+import './css/style.css'
+var classNames=require('classNames');
 export default class Child extends Component{
     constructor(){
         super();
@@ -11,12 +11,12 @@ export default class Child extends Component{
     }
    render(){
     let {x,y}=this.state;
-    let {className}=classNames(["three",{two:x},{one:y}]);
+    let className=classNames(["three",{one:x},{two:y}]);//three生效了，one是否生效看y是否为true
     return(
         <div>
-            <h3>Child组件   子组件</h3>
-           <div className={className}>持之以恒</div>
+            <h3>Child组件</h3>
+            <div className={className}>持之以恒</div>
         </div>
     )
    }
-}
+} 
