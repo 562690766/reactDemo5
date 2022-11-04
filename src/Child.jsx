@@ -1,15 +1,17 @@
 import React,{Component} from 'react'
 
 export default class Child extends Component{
+    handdleClick=()=>{
+        this.props.getInfo("万茜")
+    }
    render(){
-    console.log("Child this.props",this.props)
+    let {name}=this.props;
+    let {handdleClick}=this;
     return(
         <div>
             <h3>Child组件   子组件</h3>
-            <p>父组件向子组件的属性传递的数据name:{this.props.name}</p>
-            <p>父组件向子组件的属性传递的数据age:{this.props.age}</p>
-
-            
+           <p>子组件的name：{name}</p>
+            <button onClick={handdleClick}>点击给父组件传递数据</button>
         </div>
     )
    }

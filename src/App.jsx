@@ -4,22 +4,20 @@ export default class App extends Component{
    constructor(){
     super();
     this.state={
-        userName:"tom",
-        age:{}
+        name:"tom",
     }
    }
-   handdleClick=()=>{
-    this.setState({
-        userName:"赵四"
-    })
-   }
+  getInfo=(name)=>{
+    this.setState({name:name})
+  }
    render(){
-    ;let {userName}=this.state;
+   let {name}=this.state;
+   let {getInfo}=this;
     return( 
         <div>
             <h3>App组件</h3>
-            <Child name={userName} age={26}></Child>
-            <button onClick={this.handdleClick}>点击发生改变</button>
+            <p>父组件state值name:{name}</p>
+            <Child name={name} getInfo={getInfo}></Child>
         </div>
     )
    }
