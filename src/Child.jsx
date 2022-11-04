@@ -1,17 +1,21 @@
 import React,{Component} from 'react'
-
+import './style.css'
+var classNames=require('classnames');
 export default class Child extends Component{
-    handdleClick=()=>{
-        this.props.getInfo("万茜")
+    constructor(){
+        super();
+        this.state={
+            x:true,
+            y:true
+        }
     }
    render(){
-    let {name}=this.props;
-    let {handdleClick}=this;
+    let {x,y}=this.state;
+    let {className}=classNames(["three",{two:x},{one:y}]);
     return(
         <div>
             <h3>Child组件   子组件</h3>
-           <p>子组件的name：{name}</p>
-            <button onClick={handdleClick}>点击给父组件传递数据</button>
+           <div className={className}>持之以恒</div>
         </div>
     )
    }

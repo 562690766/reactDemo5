@@ -1,8 +1,10 @@
-.special{
-    background: #09f;
-    color:#fff;
-    }
+
     .one{
     background:#090;
     }
-    
+    .two {
+        border: 3px solid #f00;
+    }
+    .three{
+    color:#fff;
+    }
