@@ -3,7 +3,7 @@ export default class Footer extends Component{
     render(){
         return (
             <footer className="footer">
-                <span className='todo-count'>
+{/*                 <span className='todo-count'>
                     <strong>0</strong>
                     <span>ietm left</span>
                 </span>
@@ -20,7 +20,7 @@ export default class Footer extends Component{
                 </ul>
                 <button className='clear-completed'>
                     Clear Completed
-                </button>
+                </button> */}
             </footer>
         )
     }

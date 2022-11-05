@@ -1,24 +1,17 @@
 import React,{Component} from 'react'
-
-export default class Item extends Component {
+export default class Item extends Component{
     render(){
+        let {todo}=this.props;
         return (
             <li>
-                 {/* <div className='view'>
-                    <input type="checkbox" className='toggle' />
-                    <label>Content</label>
+                <div className='view'>
+                    <input type="checkbox" className='toggle'/>
+                    <label>{todo.title}</label>
                     <button className='destroy'></button>
                 </div>
-                <input type="text" className='edit'/> */}
-
-
-                <section className='view'>
-                    <input type="checkbox" className='toggle'/>
-                    <label htmlFor="toggle">Content</label>
-                    <button className='destroy'></button>
-                </section>
                 <input type="text" className='edit'/>
-            </li> 
+            </li>
         )
     }
+    
 }
