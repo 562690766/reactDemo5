@@ -41,15 +41,26 @@ export default class App extends Component{
         })
         this.setState({todoDatas});
     }
-
+    //改变todo状态 已完成/未完成todo.hasCompleted->todo->todoDatas
+    changeHasCompleted=(todo)=>{
+        let {todoDatas}=this.state;
+        todoDatas=todoDatas.map(value=>{
+            if(value.id===todo.id){
+                value.hasCompleted = !todo.hasCompleted;
+            }
+            return value;
+        })
+        this.setState({todoDatas});
+    }
 
 
    render(){
     let {todoDatas}=this.state;
-    let {delTodo}=this;
+    let {delTodo,changeHasCompleted}=this;
     let items=todoDatas.map(todo=>{
         return (
-            <Item key={todo.id} todo={todo} delTodo={delTodo}/>
+            <Item key={todo.id} todo={todo} delTodo={delTodo} 
+            changeHasCompleted={changeHasCompleted}/>
         )
     })
     return( 
