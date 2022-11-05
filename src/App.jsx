@@ -29,11 +29,27 @@ export default class App extends Component{
         // (4)输入文本框变空
         event.target.value="";
     }
+    // 功能模块2：删除todo
+    delTodo=(todo)=>{
+        console.log("触发了delTodo");
+        let {todoDatas}=this.state;
+        todoDatas=todoDatas.filter(value=>{
+            if(value.id==todo.id){
+                return false;
+            }
+            return true;
+        })
+        this.setState({todoDatas});
+    }
+
+
+
    render(){
     let {todoDatas}=this.state;
+    let {delTodo}=this;
     let items=todoDatas.map(todo=>{
         return (
-            <Item key={todo.id} todo={todo}/>
+            <Item key={todo.id} todo={todo} delTodo={delTodo}/>
         )
     })
     return( 
