@@ -39,6 +39,7 @@ export default class Item extends Component{
                     <button className='destroy' onClick={()=>delTodo(todo)}></button>
                 </div>
                 <input type="text" className='edit' ref={this.myInput} 
+                // 如何进行事件解绑   条件表达式
                 onBlur={inEdit?()=>{
                     console.log("执行了onBlur步骤");
                     // 把当前修改后的todo赋值给todo.title，通过回调函数传给父组件
@@ -51,6 +52,10 @@ export default class Item extends Component{
                         console.log("Enter");
                         todo.title=this.myInput.current.value.trim();
                         editTodo(todo);
+                        this.setState({inEdit:false});
+                    }
+                    if(event.key==="Escape"){
+                        console.log("Escape");
                         this.setState({inEdit:false});
                     }
                 }}
