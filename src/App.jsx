@@ -83,11 +83,20 @@ export default class App extends Component{
     changeView=(view)=>{
         this.setState({view});
     }
-
+    //删除所哟已完成todo，即todo.hasCompleted 为true的toso
+    clearHasCompleted=()=>{
+        let {todoDatas}=this.state;
+        todoDatas=todoDatas.filter(value=>{
+            if(value.hasCompleted){
+                return false;
+            }
+            return true;
+        })
+        this.setState({todoDatas});
+    }
    render(){
     let {todoDatas,todoNum,view}=this.state;
-    let {delTodo,changeHasCompleted,editTodo,changeView}=this;
-    
+    let {delTodo,changeHasCompleted,editTodo,changeView,clearHasCompleted}=this;
     let filterTodoDatas=todoDatas.filter(value=>{
         switch (view){
             case 'all':
@@ -122,7 +131,7 @@ export default class App extends Component{
                    {items}
                 </ul>
             </section>
-            <Footer todoNum={todoNum} changeView={changeView}/>
+            <Footer todoNum={todoNum} changeView={changeView} clearHasCompleted={clearHasCompleted}/>
         </section>
     )
    }
