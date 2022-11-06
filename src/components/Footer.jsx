@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 export default class Footer extends Component{
     render(){
-        let {todoNum}=this.props;
+        let {todoNum,changeView,view}=this.props;
         return (
             <footer className="footer">
                 <span className='todo-count'>
@@ -10,13 +10,13 @@ export default class Footer extends Component{
                 </span>
                 <ul className='filters'>
                     <li>
-                        <a href="#/all" className='selected'>All</a>
+                        <a href="#/all" onClick={()=>changeView("all")} className={view=="all"?"selected":""}>All</a>
                     </li>
                     <li>
-                        <a href="#/active">Active</a>
+                        <a href="#/active" onClick={()=>changeView("active")} className={view=="active"?"selected":""}>Active</a>
                     </li>
                     <li>
-                        <a href="#/completed">Completed</a>
+                        <a href="#/completed" onClick={()=>changeView("completed")}  className={view=="completed"?"selected":""}>Completed</a>
                     </li>
                 </ul>
                 <button className='clear-completed'>

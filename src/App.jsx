@@ -11,7 +11,9 @@ export default class App extends Component{
             //存储所有todo的数组
             todoDatas:[],
             // 统计所有未完成todo，就是统计todo.hasCompleted false的条数
-            todoNum:0
+            todoNum:0,
+            // 存储过滤的值
+            view:"all"
         }
     }
     // 功能模块1：添加todo
@@ -77,13 +79,28 @@ export default class App extends Component{
         })
         this.setState({todoDatas});
     }
-    //功能模块4： 统计未完成todo
-
+    //功能模块5： 过滤todo
+    changeView=(view)=>{
+        this.setState({view});
+    }
 
    render(){
-    let {todoDatas,todoNum}=this.state;
-    let {delTodo,changeHasCompleted,editTodo}=this;
-    let items=todoDatas.map(todo=>{
+    let {todoDatas,todoNum,view}=this.state;
+    let {delTodo,changeHasCompleted,editTodo,changeView}=this;
+    
+    let filterTodoDatas=todoDatas.filter(value=>{
+        switch (view){
+            case 'all':
+                return true;
+            case 'active':
+                return !value.hasCompleted;
+            case 'completed':
+                return value.hasCompleted;
+            default:
+                return retue;
+        }
+    })
+    let items=filterTodoDatas.map(todo=>{
         return (
             <Item key={todo.id} todo={todo} delTodo={delTodo} 
             changeHasCompleted={changeHasCompleted} 
@@ -105,7 +122,7 @@ export default class App extends Component{
                    {items}
                 </ul>
             </section>
-            <Footer todoNum={todoNum}/>
+            <Footer todoNum={todoNum} changeView={changeView}/>
         </section>
     )
    }

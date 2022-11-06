@@ -39,7 +39,7 @@ export default class Item extends Component{
                     {/* delTodo(todo)不在函数内会报错 */}
                     <button className='destroy' onClick={()=>delTodo(todo)}></button>
                 </div>
-                {/* 没有editing这个类，下方的edit就会隐藏，然后指定触发onBlur事件 */}
+                {/* 没有editing这个类，下方的edit就会隐藏，然后指定触发onBlur */}
                 <input type="text" className='edit' ref={this.myInput} 
                 // 如何进行事件解绑   条件表达式
                 onBlur={inEdit?()=>{
