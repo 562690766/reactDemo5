@@ -52,9 +52,18 @@ export default class Item extends Component{
                 onKeyUp={event=>{
                     if(event.key==="Enter"){
                         console.log("Enter");
-                        todo.title=this.myInput.current.value.trim();
-                        editTodo(todo);
-                        this.setState({inEdit:false});
+                        if(this.myInput.current.value.trim()!=""){
+                            todo.title=this.myInput.current.value.trim();
+                            editTodo(todo);
+                            this.setState({inEdit:false});
+                        }else{
+                            alert("输入不能为空");
+                            //todo内容修改为空后，返回修改前内容
+                            // this.myInput.current.value= todo.title
+                            //修改内容为空，删除todo
+                            delTodo(todo)
+                          }
+                        
                     }
                     if(event.key==="Escape"){
                         console.log("Escape");

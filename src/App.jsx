@@ -94,6 +94,24 @@ export default class App extends Component{
         })
         this.setState({todoDatas});
     }
+    // 全选和全不选
+    selectAllTodo=()=>{
+        let {todoDatas,todoNum,flag}=this.state;
+        flag=!flag;
+        if(falg){
+            todoDatas=todoDatas.map(value=>{
+                value.hasCompleted=true;
+                return value;
+            })
+            todoNum=0;
+        }else{
+            todoDatas=todoDatas.map(value=>{
+                value.hasCompleted=false;
+            })
+            todoNum=todoDatas.length;
+        }
+        this.setState({todoDatas,todoNum,flag})
+    }
    render(){
     let {todoDatas,todoNum,view}=this.state;
     let {delTodo,changeHasCompleted,editTodo,changeView,clearHasCompleted}=this;
