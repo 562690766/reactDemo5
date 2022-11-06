@@ -52,15 +52,27 @@ export default class App extends Component{
         })
         this.setState({todoDatas});
     }
-
+    // 编辑todo
+    editTodo=(todo)=>{
+        let {todoDatas}=this.state;
+        todoDatas=todoDatas.map(value=>{
+            if(value.id===todo.id){
+                // todo.title的title写错的话不会报错，就是双击后component监控到的state状态一直是false不会改变。
+                value.title=todo.title;
+            }
+            return value;
+        })
+        this.setState({todoDatas});
+    }
 
    render(){
     let {todoDatas}=this.state;
-    let {delTodo,changeHasCompleted}=this;
+    let {delTodo,changeHasCompleted,editTodo}=this;
     let items=todoDatas.map(todo=>{
         return (
             <Item key={todo.id} todo={todo} delTodo={delTodo} 
-            changeHasCompleted={changeHasCompleted}/>
+            changeHasCompleted={changeHasCompleted} 
+            editTodo={editTodo}/>
         )
     })
     return( 
