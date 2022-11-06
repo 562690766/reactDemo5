@@ -15,6 +15,8 @@ export default class App extends Component{
     // 功能模块1：添加todo
     addTodo=(event)=>{
         if(event.key!=="Enter") return;
+        // 如果想添加的todo为空，就不添加
+        if(event.target.value.trim()==="") return;
         console.log("addTodo被调用了");
         let {todoDatas}=this.state;
         // (1)创建todo

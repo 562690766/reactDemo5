@@ -45,7 +45,15 @@ export default class Item extends Component{
                     todo.title=this.myInput.current.value.trim();
                     editTodo(todo);
                     this.setState({inEdit:false});
-                }:null}
+                }:null} 
+                onKeyUp={event=>{
+                    if(event.key==="Enter"){
+                        console.log("Enter");
+                        todo.title=this.myInput.current.value.trim();
+                        editTodo(todo);
+                        this.setState({inEdit:false});
+                    }
+                }}
                 />
             </li>
         )
