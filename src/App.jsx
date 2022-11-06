@@ -9,7 +9,9 @@ export default class App extends Component{
         super();
         this.state={
             //存储所有todo的数组
-            todoDatas:[]
+            todoDatas:[],
+            // 统计所有未完成todo，就是统计todo.hasCompleted false的条数
+            todoNum:0
         }
     }
     // 功能模块1：添加todo
@@ -18,7 +20,7 @@ export default class App extends Component{
         // 如果想添加的todo为空，就不添加
         if(event.target.value.trim()==="") return;
         console.log("addTodo被调用了");
-        let {todoDatas}=this.state;
+        let {todoDatas,todoNum}=this.state;
         // (1)创建todo
         let todo={};
         todo.id=Date.now ();
@@ -26,35 +28,44 @@ export default class App extends Component{
         todo.hasCompleted=false;
         // (2)添加到储存todo的数组里
         todoDatas.push(todo);
+        todoNum++;
         // (3)render出来
-        this.setState({todoDatas});
+        this.setState({todoDatas,todoNum});
         // (4)输入文本框变空
         event.target.value="";
     }
     // 功能模块2：删除todo
     delTodo=(todo)=>{
         console.log("触发了delTodo");
-        let {todoDatas}=this.state;
+        let {todoDatas,todoNum}=this.state;
         todoDatas=todoDatas.filter(value=>{
             if(value.id==todo.id){
+                if(!todo.hasCompleted){
+                    todoNum--;
+                }
                 return false;
             }
             return true;
         })
-        this.setState({todoDatas});
+        this.setState({todoDatas,todoNum});
     }
-    //改变todo状态 已完成/未完成todo.hasCompleted->todo->todoDatas
+    //功能模块3：改变todo状态 已完成/未完成todo.hasCompleted->todo->todoDatas
     changeHasCompleted=(todo)=>{
-        let {todoDatas}=this.state;
+        let {todoDatas,todoNum}=this.state;
         todoDatas=todoDatas.map(value=>{
             if(value.id===todo.id){
                 value.hasCompleted = !todo.hasCompleted;
+                if(value.hasCompleted){
+                    todoNum--;
+                }else{
+                    todoNum++;
+                }
             }
             return value;
         })
-        this.setState({todoDatas});
+        this.setState({todoDatas,todoNum});
     }
-    // 编辑todo
+    //功能模块4： 编辑todo
     editTodo=(todo)=>{
         let {todoDatas}=this.state;
         todoDatas=todoDatas.map(value=>{
@@ -66,9 +77,11 @@ export default class App extends Component{
         })
         this.setState({todoDatas});
     }
+    //功能模块4： 统计未完成todo
+
 
    render(){
-    let {todoDatas}=this.state;
+    let {todoDatas,todoNum}=this.state;
     let {delTodo,changeHasCompleted,editTodo}=this;
     let items=todoDatas.map(todo=>{
         return (
@@ -92,7 +105,7 @@ export default class App extends Component{
                    {items}
                 </ul>
             </section>
-            <Footer/>
+            <Footer todoNum={todoNum}/>
         </section>
     )
    }

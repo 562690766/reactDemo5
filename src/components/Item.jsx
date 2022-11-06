@@ -23,6 +23,7 @@ export default class Item extends Component{
         let completed=todo.hasCompleted?"completed":"";
         // 先分状态：编辑状态时出现editing这个类，否则隐藏
         let {inEdit}=this.state;
+        // 传过来的inEdit是false就把类editing刷没了
         let classes=inEdit?completed+"editing":completed;
         return (
             <li className={classes}>
@@ -38,6 +39,7 @@ export default class Item extends Component{
                     {/* delTodo(todo)不在函数内会报错 */}
                     <button className='destroy' onClick={()=>delTodo(todo)}></button>
                 </div>
+                {/* 没有editing这个类，下方的edit就会隐藏，然后指定触发onBlur事件 */}
                 <input type="text" className='edit' ref={this.myInput} 
                 // 如何进行事件解绑   条件表达式
                 onBlur={inEdit?()=>{
@@ -57,6 +59,7 @@ export default class Item extends Component{
                     if(event.key==="Escape"){
                         console.log("Escape");
                         this.setState({inEdit:false});
+                        // 上述步骤之后会重新render，
                     }
                 }}
                 />
